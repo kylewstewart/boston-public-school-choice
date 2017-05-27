@@ -1,6 +1,6 @@
-School.create(name: "JFK Elementary", availability: 5, zone: 1)
-School.create(name: "Lincoln Elementary", availability: 5, zone: 2)
-School.create(name: "Washington Elementary", availability: 5, zone: 3)
+School.create(name: "JFK Elementary", capacity: 5, zone: 1)
+School.create(name: "Lincoln Elementary", capacity: 5, zone: 2)
+School.create(name: "Washington Elementary", capacity: 5, zone: 3)
 
 Student.create(name: "Emma", zone: 1)
 Student.create(name: "Noah", zone: 1)
