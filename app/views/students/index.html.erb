@@ -1,0 +1,57 @@
+
+<div class="container">
+  <br>
+  <div class="row">
+    <div class="col-sm-10">
+      <table class="table table-bordered table-sm">
+        <thead class="text-center">
+          <tr>
+            <th> Student </th>
+            <th class="text-center"> Zone </th>
+            <th class="text-center"> Test Score </th>
+            <th class="text-center"> First Choince </th>
+            <th class="text-center"> Second Choince </th>
+            <th class="text-center"> Third Choince </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @students.each do |student| %>
+            <tr>
+              <td> <%= student.name %> </td>
+              <td class="text-center"> <%= student.zone %> </td>
+              <td class="text-center"> <%= student.test_score %> </td>
+              <% student.school_prefs.each do |school_pref| %>
+                <td class="text-center"> <%= school_pref.school.name %> </td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <table class="table table-bordered table-sm">
+        <thead class="text-center">
+          <tr>
+            <th> School </th>
+            <th class="text-center"> Zone </th>
+            <th class="text-center"> Student Preference List </th>
+          </tr>
+        </thead>
+        <br>
+        <tbody>
+          <% @schools.each do |school| %>
+            <tr>
+              <td> <%= school.name %> </td>
+              <td class="text-center"> <%= school.zone %> </td>
+              <td> <%= school.student_prefs.map{|student_pref| student_pref.student.name}.join(", ") %> </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
