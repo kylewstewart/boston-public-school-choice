@@ -10,7 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170526192651) do
+ActiveRecord::Schema.define(version: 20170527182813) do
+
+  create_table "auctions", force: :cascade do |t|
+    t.string "method"
+    t.string "rounds"
+    t.string "match"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "immediate_acceptance_algos", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "school_auctions", force: :cascade do |t|
+    t.integer "school_id"
+    t.integer "auction_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "school_prefs", force: :cascade do |t|
     t.integer "school_id"
@@ -24,6 +44,13 @@ ActiveRecord::Schema.define(version: 20170526192651) do
     t.string "name"
     t.integer "availability"
     t.integer "zone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "student_auctions", force: :cascade do |t|
+    t.integer "student_id"
+    t.integer "auction_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
