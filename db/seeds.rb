@@ -70,6 +70,6 @@ add_test_scores()
 add_zones()
 create_student_prefs()
 strat = Strategy.new
-strat.run("truethy")
+strat.run("strategic")
 imm = Auction.new
 imm.run("imm")
