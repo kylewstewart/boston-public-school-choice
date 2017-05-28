@@ -5,8 +5,6 @@ class CreateStudents < ActiveRecord::Migration[5.1]
       t.string :assigned_school
       t.integer :zone
       t.integer :test_score
-
-      t.timestamps
     end
   end
 end

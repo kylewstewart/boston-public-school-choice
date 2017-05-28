@@ -4,8 +4,6 @@ class CreateStudentPrefs < ActiveRecord::Migration[5.1]
       t.integer :school_id
       t.integer :student_id
       t.integer :rank
-
-      t.timestamps
     end
   end
 end

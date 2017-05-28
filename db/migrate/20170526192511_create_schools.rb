@@ -4,8 +4,6 @@ class CreateSchools < ActiveRecord::Migration[5.1]
       t.string :name
       t.integer :capacity
       t.integer :zone
-
-      t.timestamps
     end
   end
 end
