@@ -11,8 +11,7 @@ class Statistic
   def distribution
     dist = set_dist_hash
     students.each do |student|
-      school_id = School.find_by(name: student.assigned_school).id
-      rank = student.school_prefs.find_by(school_id: school_id).rank.ordinalize
+      rank = student.school_prefs.find_by(school_id: student.school.id).rank.ordinalize
       dist[rank] << student.name
     end
     dist.each{ |rank, studs| studs.length == 0 ?

@@ -63,7 +63,11 @@
                 <td class="text-center"> <%= school_pref.school.name %> </td>
               <% end %>
               <td> </td>
-              <td class="text-center"> <%= student.assigned_school %> </td>
+              <% if student.school %>
+                <td class="text-center"> <%= student.school.name %> </td>
+              <% else %>
+                <td> </td>
+              <% end %>
             </tr>
           <% end %>
         </tbody>

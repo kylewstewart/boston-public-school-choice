@@ -12,16 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20170529020115) do
 
-  create_table "accepteds", force: :cascade do |t|
-    t.integer "student_id"
-    t.integer "school_id"
-  end
-
-  create_table "assigneds", force: :cascade do |t|
-    t.integer "student_id"
-    t.integer "school_id"
-  end
-
   create_table "auctions", force: :cascade do |t|
     t.string "results"
   end
@@ -54,8 +44,8 @@ ActiveRecord::Schema.define(version: 20170529020115) do
     t.string "name"
     t.integer "zone"
     t.integer "test_score"
-    t.integer "assigned_id"
-    t.integer "accepted_id"
+    t.integer "school_id"
+    t.boolean "assigned", default: false
   end
 
 end

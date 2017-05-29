@@ -1,13 +1,10 @@
 class School < ApplicationRecord
+  has_many :students
   has_many :school_prefs
   has_many :student_prefs
-  has_many :students, through: :student_prefs
-  has_many :assigneds
-  has_many :students, through: :assigneds
-  has_many :accepteds
-  has_many :students, through: :accepteds
+  # has_many :students, through: :student_prefs
   has_many :rejections
-  has_many :students, through: :rejections
+  # has_many :students, through: :rejections
 
   def self.reset
     School.all.each do |school|
@@ -18,11 +15,11 @@ class School < ApplicationRecord
 
   def apply(students_preferences, algo)
     applications = students_preferences.map{ |sp| sp.student}
-    ranked = rank_by_priority(applications)
-    send(algo.downcase, ranked)
+    send(algo.downcase, applications)
   end
 
-  def imm(ranked)
+  def immediate(applications)
+    ranked = rank_by_priority(applications)
     if availability == 0
       add_rejected(ranked)
     elsif ranked.length <= availability
@@ -35,14 +32,30 @@ class School < ApplicationRecord
     end
   end
 
+  def deferred(applications)
+    applications << self.students if self.students.length > 0
+    ranked = rank_by_priority(applications)
+    if availability == 0
+      add_rejected(ranked)
+    elsif ranked.length <= availability
+      add_accepted(ranked)
+    else
+      add_accepted(ranked[0..availability-1])
+      add_rejected(ranked[availability..-1])
+    end
+  end
+
   def add_rejected(student_ids)
-    student_ids.each { |student_id| Rejected.create(school_id: self.id, student_id: student_id) }
+    student_ids.each do |student_id|
+      Rejection.create(school_id: self.id, student_id: student_id)
+      student = Student.find(student_id)
+      studnet.update(school_id: nil) if student.school
+    end
   end
 
   def add_accepted(student_ids)
-    student_ids.each {|student_id| Accepted.create(school_id: self.id, student_id: student_id)}
+    student_ids.each{|student_id| Student.find(student_id).update(school_id: self.id)}
   end
-
 
   def rank_by_priority (applications)
     ranked = {}
