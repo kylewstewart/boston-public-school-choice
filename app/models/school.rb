@@ -2,6 +2,13 @@ class School < ApplicationRecord
   has_many :school_prefs
   has_many :student_prefs
   has_many :students, through: :student_prefs
+  has_many :assigneds
+  has_many :students, through: :assigneds
+  has_many :accepteds
+  has_many :students, through: :accepteds
+  has_many :rejecteds
+  has_many :students, through: :rejecteds
+
 
   def self.reset
     School.all.each do |school|

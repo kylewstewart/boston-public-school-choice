@@ -1,9 +1,14 @@
 class Student < ApplicationRecord
-
   has_many :student_prefs
   has_many :school_prefs
   has_many :schools, through: :school_prefs
-
+  has_many :assigneds
+  has_many :schools, through: :assigneds
+  has_many :accepteds
+  has_many :schools, through: :accepteds
+  has_many :rejecteds
+  has_many :schools, through: :rejecteds
+  
   def self.reset
     Student.update_all(assigned: nil, applied: nil, rejected: nil, accepted: nil)
   end
@@ -18,12 +23,11 @@ class Student < ApplicationRecord
   end
 
   def update_accepted(school_id)
-    school = School.find(school_id)
     if self.accepted
-      self.accepted << school
+      self.accepted << school_id
       self.save
     else
-      self.update(accepted: [school])
+      self.update(accepted: [school_id])
     end
     byebug
   end
