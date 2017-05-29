@@ -1,8 +1,8 @@
-School.create(name: "Obama", capacity: 1, zone: 1)
-School.create(name: "JFK", capacity: 2, zone: 2)
-School.create(name: "Lincoln", capacity: 3, zone: 3)
-School.create(name: "Bush", capacity: 9, zone: 4)
-School.create(name: "Trump", capacity: 10, zone: 5)
+School.create(name: "Obama", capacity: 1, availability: 1, zone: 1)
+School.create(name: "JFK", capacity: 2, availability: 2, zone: 2)
+School.create(name: "Lincoln", capacity: 3, availability: 3, zone: 3)
+School.create(name: "Bush", capacity: 9, availability: 9, zone: 4)
+School.create(name: "Trump", capacity: 10, availability: 10, zone: 5)
 
 Student.create(name: "Emma")
 Student.create(name: "Noah")
@@ -19,16 +19,16 @@ Student.create(name: "Benjamin")
 Student.create(name: "Charlotte")
 Student.create(name: "Jacob")
 Student.create(name: "Abigail")
-Student.create(name: "Madison")
-Student.create(name: "Matthew")
-Student.create(name: "Avery")
-Student.create(name: "Logan")
-Student.create(name: "Victoria")
-Student.create(name: "Samuel")
-Student.create(name: "Riley")
-Student.create(name: "Henry")
-Student.create(name: "Sofia")
-Student.create(name: "Jackson")
+# Student.create(name: "Madison")
+# Student.create(name: "Matthew")
+# Student.create(name: "Avery")
+# Student.create(name: "Logan")
+# Student.create(name: "Victoria")
+# Student.create(name: "Samuel")
+# Student.create(name: "Riley")
+# Student.create(name: "Henry")
+# Student.create(name: "Sofia")
+# Student.create(name: "Jackson")
 
 def add_test_scores()
   r = SimpleRandom.new
@@ -69,7 +69,11 @@ end
 add_test_scores()
 add_zones()
 create_student_prefs()
-strat = Strategy.new
-strat.run("strategic")
-imm = Auction.new
-imm.run("imm")
+
+strategy = Strategy.new
+strategy.run("strategic")
+# strategy.run("truethy")
+
+
+# auction = Auction.new
+# auction.run("imm")

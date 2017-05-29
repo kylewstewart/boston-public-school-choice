@@ -1,40 +1,12 @@
 
 <div class="container">
-  <br>
+  <hr/>
   <div class="row">
     <div class="col-sm-12">
-      <table class="table table-bordered table-hover table-sm">
-        <thead class="text-center">
-          <tr>
-            <th> Student </th>
-            <th class="text-center"> Zone </th>
-            <th class="text-center"> Test Score </th>
-            <th class="text-center"> 1st Choice </th>
-            <th class="text-center"> 2nd Choice </th>
-            <th class="text-center"> 3rd Choice </th>
-            <th class="text-center"> 4th Choice </th>
-            <th class="text-center"> 5th Choice </th>
-            <th class="text-center"> </th>
-            <th class="text-center"> IMM Assigned </th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @students.each do |student| %>
-            <tr>
-              <td> <%= student.name %> </td>
-              <td class="text-center"> <%= student.zone %> </td>
-              <td class="text-center"> <%= student.test_score %> </td>
-              <% student.school_prefs.each do |school_pref| %>
-                <td class="text-center"> <%= school_pref.school.name %> </td>
-              <% end %>
-              <td> </td>
-              <td class="text-center"> <%= student.assigned_school %> </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+      <h1 class="display-5 text-center"> School Choice Simulator </h1>
     </div>
   </div>
+  <hr/>
 
   <div class="row">
     <div class="col-sm-12">
@@ -61,5 +33,65 @@
       </table>
     </div>
   </div>
+  <hr/>
+
+   <hr/>
+  <div class="row">
+    <div class="col-sm-12">
+      <table class="table table-bordered table-hover table-sm">
+        <thead class="text-center">
+          <tr>
+            <th> Student </th>
+            <th class="text-center"> Zone </th>
+            <th class="text-center"> Test Score </th>
+            <th class="text-center"> 1st Choice </th>
+            <th class="text-center"> 2nd Choice </th>
+            <th class="text-center"> 3rd Choice </th>
+            <th class="text-center"> 4th Choice </th>
+            <th class="text-center"> 5th Choice </th>
+            <th class="text-center"> </th>
+            <th class="text-center"> Assigned School</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @students.each do |student| %>
+            <tr>
+              <td> <%= student.name %> </td>
+              <td class="text-center"> <%= student.zone %> </td>
+              <td class="text-center"> <%= student.test_score %> </td>
+              <% student.school_prefs.each do |school_pref| %>
+                <td class="text-center"> <%= school_pref.school.name %> </td>
+              <% end %>
+              <td> </td>
+              <td class="text-center"> <%= student.assigned_school %> </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <hr/>
+
+  <div class="row">
+    <div class="col-sm-8">
+       <table class="table">
+         <thead>
+           <tr>
+             <% @stats.distribution.each do |dist| %>
+             <th> <%= dist[0] %> </th>
+             <% end %>
+           </tr>
+         </thead>
+         <tbody>
+           <tr>
+             <% @stats.distribution.each do |dist| %>
+             <td> <%= dist[1] %> </td>
+             <% end %>
+           </tr>
+         </tbody>
+       </table>
+    </div>
+  </div>
+
 
 </div>

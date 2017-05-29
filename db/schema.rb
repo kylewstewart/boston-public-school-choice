@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170526192651) do
+ActiveRecord::Schema.define(version: 20170528202339) do
+
+  create_table "auctions", force: :cascade do |t|
+    t.string "results"
+  end
 
   create_table "school_prefs", force: :cascade do |t|
     t.integer "school_id"
@@ -20,8 +24,12 @@ ActiveRecord::Schema.define(version: 20170526192651) do
 
   create_table "schools", force: :cascade do |t|
     t.string "name"
-    t.integer "capacity"
     t.integer "zone"
+    t.integer "capacity"
+    t.integer "availability"
+    t.integer "accepted"
+    t.integer "rejected"
+    t.integer "assigned"
   end
 
   create_table "student_prefs", force: :cascade do |t|
@@ -32,9 +40,11 @@ ActiveRecord::Schema.define(version: 20170526192651) do
 
   create_table "students", force: :cascade do |t|
     t.string "name"
-    t.string "assigned_school"
     t.integer "zone"
     t.integer "test_score"
+    t.integer "accepted"
+    t.integer "rejected"
+    t.integer "assigned"
   end
 
 end
