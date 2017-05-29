@@ -4,6 +4,8 @@ class CreateStudents < ActiveRecord::Migration[5.1]
       t.string :name
       t.integer :zone
       t.integer :test_score
+      t.integer :assigned_id
+      t.integer :accepted_id
 
     end
   end

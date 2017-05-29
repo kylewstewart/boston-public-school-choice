@@ -6,14 +6,13 @@ class School < ApplicationRecord
   has_many :students, through: :assigneds
   has_many :accepteds
   has_many :students, through: :accepteds
-  has_many :rejecteds
-  has_many :students, through: :rejecteds
-
+  has_many :rejections
+  has_many :students, through: :rejections
 
   def self.reset
     School.all.each do |school|
       avail = school.capacity
-      school.update(availability: avail, assigned: nil, applied: nil, rejected: nil, accepted: nil)
+      school.update(availability: avail )
     end
   end
 
@@ -24,19 +23,26 @@ class School < ApplicationRecord
   end
 
   def imm(ranked)
-    result = {}
     if availability == 0
-      result[:reject] = ranked
+      add_rejected(ranked)
     elsif ranked.length <= availability
-      result[:accept] = ranked
+      add_accepted(ranked)
       self.update(availability: availability - ranked.length)
     else
-      result[:accept] = ranked[0..availability-1]
-      result[:reject] = ranked[availability..-1]
+      add_accepted(ranked[0..availability-1])
+      add_rejected(ranked[availability..-1])
       self.update(availability: 0)
     end
-    return result
   end
+
+  def add_rejected(student_ids)
+    student_ids.each { |student_id| Rejected.create(school_id: self.id, student_id: student_id) }
+  end
+
+  def add_accepted(student_ids)
+    student_ids.each {|student_id| Accepted.create(school_id: self.id, student_id: student_id)}
+  end
+
 
   def rank_by_priority (applications)
     ranked = {}

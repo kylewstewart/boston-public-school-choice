@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20170529020115) do
     t.string "results"
   end
 
-  create_table "rejecteds", force: :cascade do |t|
+  create_table "rejections", force: :cascade do |t|
     t.integer "student_id"
     t.integer "school_id"
   end
@@ -54,6 +54,8 @@ ActiveRecord::Schema.define(version: 20170529020115) do
     t.string "name"
     t.integer "zone"
     t.integer "test_score"
+    t.integer "assigned_id"
+    t.integer "accepted_id"
   end
 
 end

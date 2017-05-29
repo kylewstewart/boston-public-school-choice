@@ -1,39 +1,21 @@
 class Student < ApplicationRecord
+  has_many :assigneds
+  has_many :accepteds
+
   has_many :student_prefs
   has_many :school_prefs
   has_many :schools, through: :school_prefs
-  has_many :assigneds
-  has_many :schools, through: :assigneds
-  has_many :accepteds
-  has_many :schools, through: :accepteds
-  has_many :rejecteds
-  has_many :schools, through: :rejecteds
-  
-  def self.reset
-    Student.update_all(assigned: nil, applied: nil, rejected: nil, accepted: nil)
-  end
+  has_many :rejections
+  has_many :schools, through: :rejections
 
   def school_preference
-    return nil if accepted
-    if !rejected
+    return nil if self.accepteds.length = 0
+    if self.rejections = 0
       school_prefs.order(:rank).first
     else
-      school_prefs.order(:rank).reject{|pref| rejected.include?(pref.school_id)}.first
+      rejections = self.rejections.map{|reject| reject.school_id}
+      school_prefs.order(:rank).reject{|pref| rejections.include?(pref.school_id)}.first
     end
-  end
-
-  def update_accepted(school_id)
-    if self.accepted
-      self.accepted << school_id
-      self.save
-    else
-      self.update(accepted: [school_id])
-    end
-    byebug
-  end
-
-  def update_rejected(school_id)
-    byebug
   end
 
 
