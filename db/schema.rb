@@ -10,15 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170529020115) do
+ActiveRecord::Schema.define(version: 20170530013118) do
 
   create_table "auctions", force: :cascade do |t|
-    t.string "results"
+    t.string "method"
+    t.string "strategy"
   end
 
   create_table "rejections", force: :cascade do |t|
     t.integer "student_id"
     t.integer "school_id"
+  end
+
+  create_table "roundlogs", force: :cascade do |t|
+    t.integer "auction_id"
+    t.integer "round"
+    t.integer "school_id"
+    t.integer "applicants"
+    t.integer "accepted"
+    t.integer "rejected"
   end
 
   create_table "school_prefs", force: :cascade do |t|
@@ -32,6 +42,9 @@ ActiveRecord::Schema.define(version: 20170529020115) do
     t.integer "zone"
     t.integer "capacity"
     t.integer "availability"
+  end
+
+  create_table "strategies", force: :cascade do |t|
   end
 
   create_table "student_prefs", force: :cascade do |t|

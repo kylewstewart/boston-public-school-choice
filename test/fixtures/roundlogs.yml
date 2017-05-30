@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  auction_id: 1
+  log: MyText
+  belongs_to: MyString
+  : 
+
+two:
+  auction_id: 1
+  log: MyText
+  belongs_to: MyString
+  : 

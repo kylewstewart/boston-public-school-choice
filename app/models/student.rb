@@ -16,8 +16,8 @@ class Student < ApplicationRecord
     if self.rejections.length == 0
       school_prefs.order(:rank).first
     else
-      rejections = self.rejections.map{|reject| reject.school_id}
-      school_prefs.order(:rank).reject{|pref| rejections.include?(pref.school_id)}.first
+      rejections = self.rejections.map{ |reject| reject.school_id}
+      school_prefs.order(:rank).reject{ |pref| rejections.include?(pref.school_id)}.first
     end
   end
 
